@@ -1,16 +1,26 @@
 public abstract class Creature extends Entity {
     // Существо
 
-    public int SPEED;
-    public int HP;
+    Coordinates coordinates;
+    private int speed;
+    private int HP;
+    private String name;
 
-
-    public int getSPEED() {
-        return SPEED;
+    public String getName() {
+        return name;
     }
 
-    public void setSPEED(int SPEED) {
-        this.SPEED = SPEED;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public int getHP() {

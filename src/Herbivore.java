@@ -2,13 +2,13 @@ public class Herbivore extends Creature {
     // Травоядное
 
     @Override
-    public int getSPEED() {
-        return super.getSPEED();
+    public int getSpeed() {
+        return super.getSpeed();
     }
 
     @Override
-    public void setSPEED(int SPEED) {
-        super.setSPEED(SPEED);
+    public void setSpeed(int speed) {
+        super.setSpeed(speed);
     }
 
     @Override
