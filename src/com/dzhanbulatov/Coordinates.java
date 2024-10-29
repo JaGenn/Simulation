@@ -1,8 +1,8 @@
-import java.util.Objects;
+package com.dzhanbulatov;
 
 public class Coordinates {
-    public Integer X;
-    public Integer Y;
+    public final Integer X;
+    public final Integer Y;
 
     public Coordinates(int x, int y) {
         X = x;

@@ -1,4 +1,13 @@
+package com.dzhanbulatov.entity;
+
+import com.dzhanbulatov.Coordinates;
+
 public class Herbivore extends Creature {
+
+    public Herbivore(int speed, int HP, Coordinates coordinates) {
+        super(speed, HP, coordinates);
+    }
+
     // Травоядное
 
     @Override
