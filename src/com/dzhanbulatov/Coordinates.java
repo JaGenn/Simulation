@@ -4,9 +4,9 @@ public class Coordinates {
     public final Integer X;
     public final Integer Y;
 
-    public Coordinates(int x, int y) {
-        X = x;
-        Y = y;
+    public Coordinates(int X, int Y) {
+        this.X = X;
+        this.Y = Y;
     }
 
     @Override

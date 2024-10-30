@@ -9,21 +9,12 @@ public abstract class Creature extends Entity {
     public Coordinates coordinates;
     private int speed;
     private int HP;
-    private String name;
 
 
     public Creature(int speed, int HP, Coordinates coordinates) {
+        super(coordinates);
         this.speed = speed;
         this.HP = HP;
-        this.coordinates = coordinates;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 
