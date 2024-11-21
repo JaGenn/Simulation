@@ -10,7 +10,8 @@ public class Rock extends Entity {
 
     @Override
     public String getSprite() {
-        return "\uD83C\uDFD4";
+        return "⛰\uFE0F";
+        //return "r";
     }
     // Скала
 }

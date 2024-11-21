@@ -2,7 +2,7 @@ package com.dzhanbulatov.entity;
 
 import com.dzhanbulatov.Coordinates;
 
-public abstract class Entity {
+public class Entity {
 
     public Coordinates coordinates;
 
@@ -10,5 +10,9 @@ public abstract class Entity {
         this.coordinates = coordinates;
     }
 
-    public abstract String getSprite();
+    public String getSprite() {
+        return "  ";
+    }
+
+
 }

@@ -10,7 +10,7 @@ public class Grass extends Entity {
 
     @Override
     public String getSprite() {
-        return "\uD83C\uDF3F";
+        return "\uD83C\uDF40";
     }
     // Трава
 }
