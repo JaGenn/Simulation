@@ -21,7 +21,6 @@ public class Herbivore extends Creature {
     public Herbivore(Coordinates coordinates, Map map) {
         super(coordinates, map);
         super.speed = 1;
-        super.HP = 50;
     }
 
     @Override

@@ -15,7 +15,6 @@ public class Predator extends Creature {
     public Predator(Coordinates coordinates, Map map) {
         super(coordinates, map);
         super.speed = 1;
-        super.HP = 20;
     }
 
 

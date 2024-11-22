@@ -12,12 +12,14 @@ public abstract class Creature extends Entity {
     public Coordinates coordinates;
     protected int speed;
     protected int HP;
+    public int movesCount;
 
 
     public Creature(Coordinates coordinates, Map map) {
         super(coordinates);
         this.coordinates = coordinates;
         this.map = map;
+        movesCount = 0;
     }
 
 
