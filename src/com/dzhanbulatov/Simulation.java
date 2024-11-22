@@ -6,8 +6,10 @@ import com.dzhanbulatov.entity.Grass;
 import com.dzhanbulatov.entity.Herbivore;
 
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Simulation {
     private Map map;
@@ -37,7 +39,6 @@ public class Simulation {
 
     public void startSimulation() {
         boolean herbSpawned = false;
-        boolean grassSpawned = false;
         boolean areDead = false;
         while (!isOver) {
             System.out.println();
@@ -47,7 +48,7 @@ public class Simulation {
                     .collect(Collectors.toSet());
 
 
-            for (int i = -1; i <= 1; i++) {
+            //for (int i = 0; i <= 1 && !isOver; i++) {
 
                 Set<Entity> herb = getOnlyCreatures().stream()
                         .filter(hr -> hr instanceof Herbivore)
@@ -57,14 +58,19 @@ public class Simulation {
                 for (Entity entity : getOnlyCreatures()) {
                     Creature creature = (Creature) entity;
                     Deque<Coordinates> pathToFood = creature.findWayToFood(map);  // Ищем путь для каждого существа
-
                     if (!pathToFood.isEmpty()) {
                         creature.makeMove(pathToFood, map); // каждое существо выполняет движение к пище
                         break;
-                    } else {
-                        creature.changeCoordinates(); // если путь для существа не найден, то оно меняет свое местоположение
+                    }
+                    else {
+                        creature.movesCount++;
+                    }
+                    if (creature.movesCount > 4) { // Если больше 4 итераций существо не двигается, то оно меняет местоположение
+                        creature.changeCoordinates();
+                        creature.movesCount = 0;
                     }
                 }
+
 
                 if (herb.isEmpty()) {
                     System.out.println("All herbivores are eaten, simulation is over\n");
@@ -73,27 +79,24 @@ public class Simulation {
                 }
 
                 if (grass.size() < 5) {
-                    if (!grassSpawned) {
-                        for (int g = 0; g < 5; g++) {
-                            Coordinates randCoord = map.getRandomCoordinatesOnMap();
-                            map.setEntity(randCoord, new Grass(randCoord));
-                        }
-                        System.out.println("Added 5 grass cells\n");
-                        grassSpawned = true;
+                    for (int g = 0; g < 5; g++) {
+                        Coordinates randCoord = map.getRandomCoordinatesOnMap();
+                        map.setEntity(randCoord, new Grass(randCoord));
                     }
+                    System.out.println("Added 5 grass cells\n");
                 }
 
                 if (herb.size() < map.getMap().size() * 10 / 100) {
-                    if (!herbSpawned) {
+//                    if (!herbSpawned) {
                         for (int g = 0; g < 3; g++) {
                             Coordinates randCoord = map.getRandomCoordinatesOnMap();
                             map.setEntity(randCoord, new Herbivore(randCoord, map));
                         }
                         System.out.println("Added 3 herbivores\n");
                         herbSpawned = true;
-                    }
+//                    }
                 }
-            }
+            //}
             if (areDead) {
                 renderer.render(map);
                 break;
@@ -108,6 +111,38 @@ public class Simulation {
 
         }
 
+    }
+
+    public void stopSimulation() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                Thread thread = new Thread(r);
+                thread.setDaemon(true);
+                return thread;
+            }
+        });
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                Scanner in = new Scanner(System.in);
+                while(true) {
+                    String s = in.nextLine();
+                    if (s.equalsIgnoreCase("s") || Integer.parseInt(s) == 3) {
+                        isOver = true;
+                        break;
+                    }
+                }
+                //in.close();
+            }
+        });
     }
 
 
