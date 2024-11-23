@@ -5,7 +5,6 @@ import com.dzhanbulatov.entity.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class Map {
     private static int X;
@@ -89,7 +88,7 @@ public class Map {
 
 
 
-    public void defaultEntitiesPositions() {
+    public void setRandomEntitiesPosition() {
         for (int i = 1; i <= X; i++) {
             for (int j = 1; j <= Y; j++) {
                 setEntity(new Coordinates(i, j), setRandomEntity(new Coordinates(i, j)));
@@ -107,6 +106,5 @@ public class Map {
         } else {
             return "  ";
         }
-        //return entitiesMap.get(coordinates).getSprite();
     }
 }
