@@ -38,7 +38,6 @@ public class Simulation {
 
 
     public void startSimulation() {
-        boolean herbSpawned = false;
         boolean areDead = false;
         while (!isOver) {
             System.out.println();
@@ -132,12 +131,16 @@ public class Simulation {
                 Scanner in = new Scanner(System.in);
                 while (true) {
                     String s = in.nextLine();
-                    if (s.equalsIgnoreCase("s") || Integer.parseInt(s) == 4) {
+                    if (s.equalsIgnoreCase("s")) {
                         isOver = true;
                         break;
+                    } else if(in.hasNextInt()) {
+                        if (Integer.parseInt(s) == 4) {
+                            isOver = true;
+                            break;
+                        }
                     }
                 }
-                //in.close();
             }
         });
     }
