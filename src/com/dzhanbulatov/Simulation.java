@@ -48,7 +48,7 @@ public class Simulation {
                     .collect(Collectors.toSet());
 
 
-            //for (int i = 0; i <= 1 && !isOver; i++) {
+            for (int i = -1; i <= 1 && !isOver; i++) {
 
                 Set<Entity> herb = getOnlyCreatures().stream()
                         .filter(hr -> hr instanceof Herbivore)
@@ -61,11 +61,11 @@ public class Simulation {
                     if (!pathToFood.isEmpty()) {
                         creature.makeMove(pathToFood, map); // каждое существо выполняет движение к пище
                         break;
-                    }
-                    else {
+                    } else {
                         creature.movesCount++;
+//                        creature.changeCoordinates();
                     }
-                    if (creature.movesCount > 4) { // Если больше 4 итераций существо не двигается, то оно меняет местоположение
+                    if (creature.movesCount > 6) { // Если больше 6 итераций существо не двигается, то оно меняет местоположение
                         creature.changeCoordinates();
                         creature.movesCount = 0;
                     }
@@ -78,25 +78,22 @@ public class Simulation {
                     break;
                 }
 
-                if (grass.size() < 5) {
-                    for (int g = 0; g < 5; g++) {
+                if (grass.size() < map.getMap().size() * 10 / 100) { // 10%
+                    for (int g = 0; g < (map.getMap().size() * 10 / 100); g++) {
                         Coordinates randCoord = map.getRandomCoordinatesOnMap();
                         map.setEntity(randCoord, new Grass(randCoord));
                     }
                     System.out.println("Added 5 grass cells\n");
                 }
 
-                if (herb.size() < map.getMap().size() * 10 / 100) {
-//                    if (!herbSpawned) {
-                        for (int g = 0; g < 3; g++) {
-                            Coordinates randCoord = map.getRandomCoordinatesOnMap();
-                            map.setEntity(randCoord, new Herbivore(randCoord, map));
-                        }
-                        System.out.println("Added 3 herbivores\n");
-                        herbSpawned = true;
-//                    }
+                if (herb.size() < map.getMap().size() * 15 / 100) { // 15%
+                    for (int g = 0; g < (map.getMap().size() * 15 / 100); g++) {
+                        Coordinates randCoord = map.getRandomCoordinatesOnMap();
+                        map.setEntity(randCoord, new Herbivore(randCoord, map));
+                    }
+                    System.out.println("Added " + (map.getMap().size() * 10 / 100) + " herbivores\n");
                 }
-            //}
+            }
             if (areDead) {
                 renderer.render(map);
                 break;
@@ -133,9 +130,9 @@ public class Simulation {
                     throw new RuntimeException(e);
                 }
                 Scanner in = new Scanner(System.in);
-                while(true) {
+                while (true) {
                     String s = in.nextLine();
-                    if (s.equalsIgnoreCase("s") || Integer.parseInt(s) == 3) {
+                    if (s.equalsIgnoreCase("s") || Integer.parseInt(s) == 4) {
                         isOver = true;
                         break;
                     }
