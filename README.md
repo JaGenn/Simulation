@@ -5,3 +5,5 @@
 2D мир представляет из себя матрицу NxM, каждое существо или объект занимают клетку целиком, нахождение в клетке нескольких объектов/существ - недопустимо.
 
 ![image](https://github.com/user-attachments/assets/83d90405-fcde-4bbc-8869-44e155172c5a)
+
+Второй проект из роадмапа Сергея Жукова. Ссылка на проект в роадмапе: https://zhukovsd.github.io/java-backend-learning-course/projects/simulation/
