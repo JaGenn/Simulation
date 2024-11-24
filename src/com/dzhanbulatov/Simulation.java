@@ -64,7 +64,7 @@ public class Simulation {
                         creature.movesCount++;
 //                        creature.changeCoordinates();
                     }
-                    if (creature.movesCount > 6) { // Если больше 6 итераций существо не двигается, то оно меняет местоположение
+                    if (creature.movesCount > 12) { // Если больше 12 итераций существо не двигается, то оно меняет местоположение
                         creature.changeCoordinates();
                         creature.movesCount = 0;
                     }
@@ -100,7 +100,7 @@ public class Simulation {
             renderer.render(map);
 
             try {
-                Thread.sleep(500);  // Пауза 500 мс между итерациями
+                Thread.sleep(1000);  // Пауза 500 мс между итерациями
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
