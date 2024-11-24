@@ -41,6 +41,7 @@ public abstract class Creature extends Entity {
         }
     }
 
+
     public Deque<Coordinates> findWayToFood(Map map) {
         Queue<Deque<Coordinates>> toVisit = new ArrayDeque<>();    // Очередь путей для BFS
         Set<Coordinates> visited = new HashSet<>();         // Чтобы отслеживать посещённые клетки
@@ -77,21 +78,6 @@ public abstract class Creature extends Entity {
         // Если еда не найдена, возвращаем пустой путь
         return new ArrayDeque<>();
     }
-
-
-//    public List<Coordinates> getAvailableCellsToMove(Map map) {
-//        List<Coordinates> result = new ArrayList<>();
-//        for (Coordinates shift : getCreatureMoves()) {
-//            if (coordinates.canShift(shift)) {
-//                Coordinates newCoordinates = coordinates.shift(shift);
-//
-//                if (isCellAvailableToMove(newCoordinates, map)) {
-//                    result.add(newCoordinates);
-//                }
-//            }
-//        }
-//        return result;
-//    }
 
 
     private boolean isCellAvailableToMove(Coordinates newCoordinates, Map map) {

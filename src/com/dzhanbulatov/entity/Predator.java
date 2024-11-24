@@ -21,7 +21,7 @@ public class Predator extends Creature {
 
 
     @Override
-    public boolean canEat(Coordinates other) {
+    protected boolean canEat(Coordinates other) {
         return map.getEntity(other) instanceof Herbivore;
     }
 
