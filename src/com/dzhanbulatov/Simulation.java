@@ -82,7 +82,7 @@ public class Simulation {
                         Coordinates randCoord = map.getRandomCoordinatesOnMap();
                         map.setEntity(randCoord, new Grass(randCoord));
                     }
-                    System.out.println("Added 5 grass cells\n");
+                    System.out.println("Added " + (map.getMap().size() * 10 / 100) + " grass cells\n");
                 }
 
                 if (herb.size() < map.getMap().size() * 15 / 100) { // 15%
