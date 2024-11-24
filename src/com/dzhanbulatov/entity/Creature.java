@@ -11,7 +11,6 @@ public abstract class Creature extends Entity {
     protected Map map;
     public Coordinates coordinates;
     protected int speed;
-    protected int HP;
     public int movesCount;
 
 
