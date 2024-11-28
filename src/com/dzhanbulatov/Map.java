@@ -56,7 +56,7 @@ public class Map {
         entities.add(Tree);
         entities.add(Predator);
         entities.add(Herbivore);
-        int random = (int) (Math.random() * (entities.size() + 3));
+        int random = (int) (Math.random() * (entities.size() + 6));
         switch (random) {
             case 0:
                 return new Rock(coordinates);
